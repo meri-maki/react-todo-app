@@ -1,0 +1,157 @@
+.todoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px;
+  background: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+/* .todoContainer:focus-visible {
+  outline: -webkit-focus-ring-color auto 1px;
+} */
+
+.todoOutlined {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 4px 11px 4px;
+  margin: 0px;
+  border-radius: 12px;
+  border: 1px solid var(--c-black-todo);
+  background-color: var(--c-white);
+}
+
+.todo {
+  width: 100%;
+  border: 1px solid var(--c-black-todo);
+  transform: translate(0px, -3px);
+  box-shadow: 0px 8px 0px var(--c-black-todo);
+  background-color: var(--c-white);
+  border-radius: 12px;
+  height: auto;
+  padding: 17px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.todo:hover {
+  box-shadow: 0px 6px 0px var(--c-black-todo);
+  transform: translate(0px, -1px);
+  background-color: #f5f5f5;
+}
+
+.todo:active,
+.completedTodo:hover {
+  box-shadow: 0px 0px 0px var(--c-black-todo);
+  transform: translate(0px, 5px);
+  background-color: #f5f5f5;
+}
+
+.completedTodo:hover {
+  box-shadow: 0px 0px 0px var(--c-black-todo);
+  transform: translate(0px, 5px);
+  background-color: var(--c-white);
+}
+
+.todoText {
+  margin: 0 10px;
+  max-width: 370px;
+  width: 100%;
+  height: auto;
+  font-size: 20px !important;
+  line-height: 24px;
+  font-weight: 600 !important;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  font-size: 30px;
+  gap: 10px;
+  color: var(--c-black);
+}
+
+.completedTodo {
+  box-shadow: 0px 0px 0px var(--c-black-todo);
+  transform: translate(0px, 5px);
+  background-color: #f5f5f5;
+}
+
+.completedIcon {
+  font-size: 30px;
+  min-width: 30px;
+}
+
+/* .todoContainer:nth-of-type(4n + 1) .completedIcon {
+  color: var(--c-red);
+}
+.todoContainer:nth-of-type(4n + 2) .completedIcon {
+  color: var(--c-blue);
+}
+.todoContainer:nth-of-type(4n + 3) .completedIcon {
+  color: var(--c-green);
+}
+.todoContainer:nth-of-type(4n + 4) .completedIcon {
+  color: var(--c-yellow);
+} */
+
+.todoContainer:nth-of-type(4n + 1) .completedTodo{
+  background-color: var(--c-red);
+/*   color: var(--c-white);
+ */
+}
+.todoContainer:nth-of-type(4n + 2) .completedTodo {
+  background-color: var(--c-blue);
+/*   color: var(--c-white);
+ */
+}
+.todoContainer:nth-of-type(4n + 3) .completedTodo{
+  background-color: var(--c-green);
+/*   color: var(--c-white);
+ */
+}
+.todoContainer:nth-of-type(4n + 4) .completedTodo {
+  background-color: var(--c-yellow);
+  /* color: var(--c-white); */
+}
+
+
+.deleteIcon,
+.editIcon {
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.dragIcon {
+  cursor: grab;
+  width: 30px;
+  height: 30px;
+  color: var(--c-grey);
+  margin-right: 8px;
+}
+
+.editIcon:hover {
+  color: var(--c-yellow);
+}
+
+.deleteIcon:hover {
+  color: var(--c-red);
+}
+
+/* .todo.completedTodo .deleteIcon {
+  color: var(--c-white);
+}*/
+
+.todo.completedTodo .deleteIcon:hover {
+  color: var(--c-white);
+} 
+

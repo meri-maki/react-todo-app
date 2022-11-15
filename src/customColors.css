@@ -1,0 +1,13 @@
+:root {
+  --c-green: #21ffae;
+  --c-green-hover: #b4fee3;
+  --c-blue: #4c00ff;
+  --c-black: #171717;
+  --c-grey: #898989;
+  --c-black-todo: #3C3C3C;
+  --c-light-grey: #f5f5f5;
+  --c-red: #ee9292;
+  --c-yellow: #ffdb1e;
+  --c-yellow-hover: #ffef9d;
+  --c-white: #ffffff;
+}

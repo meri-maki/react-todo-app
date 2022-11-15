@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Inter-Bureau-Outline";
+  src: url("./fonts/Inter-Bureau-Outline.ttf.woff") format("woff"),
+    url("./fonts/Inter-Bureau-Outline.ttf.svg#Inter-Bureau-Outline")
+      format("svg"),
+    url("./fonts/Inter-Bureau-Outline.ttf.eot"),
+    url("./fonts/Inter-Bureau-Outline.ttf.eot?#iefix")
+      format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  position: relative;
+  text-align: center;
+  margin: 80px auto 40px auto;
+  max-width: 712px;
+}
+
+h1 {
+  font-size: 46px;
+  margin-bottom: 34px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h2.completed-count-text {
+  padding: 0 45px;
+}
+
+.completed-count-text-number {
+  color: var(--c-green);
+
+}
+
+.app-container {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  position: relative;
+  /* box-shadow: #FFEF9D 17px 17px, #000000 17px 17px; */
+  border-radius: 8px;
+  padding: 52px 0;
+  margin: 0 17px;
+}
+
+.app-container::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 8px;
+  left: 17px;
+  bottom: -17px;
+  width: 100%;
+  height: 100%;
+  background: #ffef9d;
+  border: 1px solid black;
+}
+
+.app-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: -2;
+  opacity: 0.4;
+  filter: blur(144px);
+  animation: colorBackChange 20s infinite;
+}
+
+/* .marquee {
+  font-family: "Inter-Bureau-Outline", sans-serif;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  position: absolute;
+  font-size: 200px;
+  color: #ffef9d;
+  animation: colorTextChange 20s infinite;
+} */
+
+@keyframes colorBackChange {
+  0% {
+    background-color: var(--c-red);
+  }
+  25% {
+    background-color: var(--c-blue);
+  }
+  50% {
+    background-color: var(--c-green);
+  }
+  75% {
+    background-color: var(--c-yellow);
+  }
+  100% {
+    background-color: var(--c-red);
+  }
+}
+
+@keyframes colorTextChange {
+  0% {
+    color: var(--c-red);
+  }
+  25% {
+    color: var(--c-blue);
+  }
+  50% {
+    color: var(--c-green);
+  }
+  75% {
+    color: var(--c-yellow);
+  }
+  100% {
+    color: var(--c-red);
+  }
+}

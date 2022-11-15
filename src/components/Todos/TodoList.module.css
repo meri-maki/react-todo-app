@@ -1,0 +1,9 @@
+.todoListContainer {
+  padding: 2px 94px 0 46px;
+/*   overflow: hidden; */
+
+}
+
+.todoListContainer h2 {
+  color: rgb(92, 92, 92);
+}

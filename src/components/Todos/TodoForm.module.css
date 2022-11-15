@@ -1,0 +1,33 @@
+.todoFormContainer {
+  margin-bottom: 30px;
+}
+.todoFormContainer form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 94px 30px 88px;
+}
+
+.todoFormContainer input {
+  width: 100%;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  transition: all 0.1s linear;
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--c-grey);
+  color: var(--c-grey);
+}
+
+.todoFormContainer input:focus {
+  font-style: normal;
+  color: var(--c-black);
+  border: 1px solid var(--c-blue);
+  outline: 1px solid var(--c-blue);
+}
+
+.todoFormContainer input:focus::placeholder {
+  color: transparent;
+}

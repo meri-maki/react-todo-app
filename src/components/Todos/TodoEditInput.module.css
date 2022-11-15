@@ -1,0 +1,44 @@
+.editForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 2px solid var(--c-green);
+  border-radius: 12px;
+  margin-left: 38px;
+  background-color: var(--c-green);
+}
+
+.editInput {
+  width: 85%;
+  font-size: 20px !important;
+  line-height: 24px;
+  font-weight: 600 !important;
+  border-top: 22px var(--c-white) solid;
+  border-bottom: 22px var(--c-white) solid;
+  border-left: 22px var(--c-white) solid;
+  border-right: 22px var(--c-white) solid;
+  border-radius: 12px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  text-align: left;
+  word-wrap: break-word;
+  height: auto;
+  resize: none;
+  outline: none;
+  overflow: hidden;
+}
+
+.editIconContainer {
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+}
+.editIcon {
+  cursor: pointer;
+  color: var(--c-black);
+  font-size: 30px;
+}

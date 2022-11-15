@@ -1,0 +1,17 @@
+.todosActionContainer Button {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  margin-left: 0;
+  border-radius: 5px;
+}
+
+.todosActionContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 36px;
+}
