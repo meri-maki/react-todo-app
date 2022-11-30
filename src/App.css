@@ -11,7 +11,6 @@
 }
 
 .App {
-  position: relative;
   text-align: center;
   margin: 80px auto 40px auto;
   max-width: 712px;
@@ -34,17 +33,15 @@ h2.completed-count-text {
 
 .completed-count-text-number {
   color: var(--c-green);
-
 }
 
 .app-container {
   background-color: #ffffff;
   border: 1px solid #000000;
   position: relative;
-  /* box-shadow: #FFEF9D 17px 17px, #000000 17px 17px; */
   border-radius: 8px;
-  padding: 52px 0;
-  margin: 0 17px;
+  padding: 52px 7%;
+  margin: 0 21px;
 }
 
 .app-container::after {
@@ -72,17 +69,6 @@ h2.completed-count-text {
   filter: blur(144px);
   animation: colorBackChange 20s infinite;
 }
-
-/* .marquee {
-  font-family: "Inter-Bureau-Outline", sans-serif;
-  width: 100%;
-  height: auto;
-  opacity: 1;
-  position: absolute;
-  font-size: 200px;
-  color: #ffef9d;
-  animation: colorTextChange 20s infinite;
-} */
 
 @keyframes colorBackChange {
   0% {
@@ -117,5 +103,12 @@ h2.completed-count-text {
   }
   100% {
     color: var(--c-red);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .app-container {
+    padding: 50px 8px;
+    margin: 0 21px 0 9px;
   }
 }

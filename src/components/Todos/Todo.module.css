@@ -10,18 +10,40 @@
   user-select: none; /* Standard syntax */
 }
 
-/* .todoContainer:focus-visible {
-  outline: -webkit-focus-ring-color auto 1px;
-} */
+.todoContainer:first-of-type {
+  padding-top: 2px;
+}
+
+/*.todoContainer:nth-of-type(4n + 1) .completedTodo {
+  background-color: var(--c-red);
+  color: var(--c-white);
+ 
+}
+.todoContainer:nth-of-type(4n + 2) .completedTodo {
+  background-color: var(--c-blue);
+  /*   color: var(--c-white);
+ 
+}
+.todoContainer:nth-of-type(4n + 3) .completedTodo {
+  background-color: var(--c-green);
+  /*   color: var(--c-white);
+ 
+}
+.todoContainer:nth-of-type(4n + 4) .completedTodo {
+  background-color: var(--c-yellow);
+  /* color: var(--c-white);
+}*/
 
 .todoOutlined {
   width: 100%;
-  max-width: 500px;
   padding: 0 4px 11px 4px;
   margin: 0px;
   border-radius: 12px;
   border: 1px solid var(--c-black-todo);
   background-color: var(--c-white);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
 }
 
 .todo {
@@ -46,97 +68,34 @@
   background-color: #f5f5f5;
 }
 
-.todo:active,
-.completedTodo:hover {
+.todo:active
+/* .completedTodo:hover */ {
   box-shadow: 0px 0px 0px var(--c-black-todo);
   transform: translate(0px, 5px);
   background-color: #f5f5f5;
 }
 
-.completedTodo:hover {
-  box-shadow: 0px 0px 0px var(--c-black-todo);
-  transform: translate(0px, 5px);
-  background-color: var(--c-white);
-}
-
 .todoText {
-  margin: 0 10px;
-  max-width: 370px;
-  width: 100%;
+  flex-basis: calc(100% - 70px);
+  flex-shrink: 0;
   height: auto;
   font-size: 20px !important;
   line-height: 24px;
   font-weight: 600 !important;
   text-align: left;
-  word-wrap: break-word;
+  /* overflow-wrap: break-word;
+  word-break: break-all; */
+  hyphens: auto;
 }
-
-.iconsContainer {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
-  font-size: 30px;
-  gap: 10px;
-  color: var(--c-black);
-}
-
-.completedTodo {
-  box-shadow: 0px 0px 0px var(--c-black-todo);
-  transform: translate(0px, 5px);
-  background-color: #f5f5f5;
-}
-
-.completedIcon {
-  font-size: 30px;
-  min-width: 30px;
-}
-
-/* .todoContainer:nth-of-type(4n + 1) .completedIcon {
-  color: var(--c-red);
-}
-.todoContainer:nth-of-type(4n + 2) .completedIcon {
-  color: var(--c-blue);
-}
-.todoContainer:nth-of-type(4n + 3) .completedIcon {
-  color: var(--c-green);
-}
-.todoContainer:nth-of-type(4n + 4) .completedIcon {
-  color: var(--c-yellow);
-} */
-
-.todoContainer:nth-of-type(4n + 1) .completedTodo{
-  background-color: var(--c-red);
-/*   color: var(--c-white);
- */
-}
-.todoContainer:nth-of-type(4n + 2) .completedTodo {
-  background-color: var(--c-blue);
-/*   color: var(--c-white);
- */
-}
-.todoContainer:nth-of-type(4n + 3) .completedTodo{
-  background-color: var(--c-green);
-/*   color: var(--c-white);
- */
-}
-.todoContainer:nth-of-type(4n + 4) .completedTodo {
-  background-color: var(--c-yellow);
-  /* color: var(--c-white); */
-}
-
 
 .deleteIcon,
 .editIcon {
-  cursor: pointer;
-  transition: all 0.1s;
-}
-
-.dragIcon {
-  cursor: grab;
-  width: 30px;
   height: 30px;
-  color: var(--c-grey);
-  margin-right: 8px;
+  flex-basis: 30px;
+  flex-shrink: 0;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
 }
 
 .editIcon:hover {
@@ -147,11 +106,85 @@
   color: var(--c-red);
 }
 
-/* .todo.completedTodo .deleteIcon {
-  color: var(--c-white);
-}*/
+.dragIcon {
+  display: none;
+}
 
-.todo.completedTodo .deleteIcon:hover {
-  color: var(--c-white);
-} 
+/* ---------- COMPLETED STATUS ------------ */
 
+.todoOutlined.completedTodo .todoText {
+  flex-basis: calc(100% - 89px);
+}
+
+.todoOutlined.completedTodo {
+  background: linear-gradient(91.08deg, #79fbb4 1.68%, #ffdb1e 100.22%);
+  border: none;
+  padding: 0 4px 11px 4px;
+}
+
+.todoOutlined.completedTodo .todo {
+  background: none;
+  border: none;
+  box-shadow: none;
+  transform: translate(0px, 5px);
+}
+
+.completedIconContainer {
+  min-width: 34px;
+  height: 34px;
+  margin-right: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out 0.15s;
+}
+
+.completedIconContainer:hover {
+  transform: scale(1.2);
+}
+
+.completedCircle {
+  height: 28px;
+  width: 28px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.todoOutlined.completedTodo .deleteIcon:hover {
+  color: var(--c-white);
+}
+
+@media screen and (min-width: 1024px) {
+  .dragIcon {
+    display: block;
+    cursor: grab;
+    width: 30px;
+    height: 30px;
+    color: var(--c-grey);
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .todoText {
+    flex-basis: calc(100% - 64px);
+    flex-shrink: 0;
+    height: auto;
+    font-size: 18px !important;
+    line-height: 22px;
+  }
+
+  .deleteIcon,
+  .editIcon {
+    height: 22px;
+    flex-basis: 22px;
+  }
+  .todoOutlined.completedTodo .todoText {
+    flex-basis: calc(100% - 81px);
+  }
+
+  .todoContainer {
+    margin-bottom: 18px;
+  }
+}

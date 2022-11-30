@@ -1,14 +1,13 @@
 import React from "react"
-import { Reorder, useDragControls } from "framer-motion"
+import { MdDragIndicator, MdOutlineModeEditOutline } from "react-icons/md"
+import { RiDeleteBin6Line } from "react-icons/ri/"
+import { useSortable } from "@dnd-kit/sortable"
 import {
-  MdDragIndicator,
-  MdOutlineModeEditOutline,
-  MdDone,
-} from "react-icons/md"
-import { RiDeleteBin6Line } from "react-icons/ri"
-
+  restrictToParentElement
+} from "@dnd-kit/modifiers";
+import {CSS} from "@dnd-kit/utilities"
 import TodoEditInput from "./TodoEditInput"
-
+import CompletedIcon from "../UI/СompletedIcon"
 import styles from "./Todo.module.css"
 
 function Todo({
@@ -19,22 +18,20 @@ function Todo({
   setEditedTodo,
   editedTodo,
   editID,
-  editTodo,
+  editTodo
 }) {
-  const controls = useDragControls()
+
+  const {attributes, listeners, setNodeRef,setActivatorNodeRef, transform, transition } = useSortable({id: todo.id})
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+
+
+
   return (
-    <Reorder.Item
-      value={todo}
-      dragListener={false}
-      dragControls={controls}
-      className={styles.todoContainer}
-    >
-      {editID !== todo.id && (
-        <MdDragIndicator
-          onPointerDown={(e) => controls.start(e)}
-          className={styles.dragIcon}
-        />
-      )}
+    <div  ref={setNodeRef} style={style} {...attributes} modifiers={[restrictToParentElement]} className={styles.todoContainer}>
       {editID === todo.id ? (
         <TodoEditInput
           editTodo={editTodo}
@@ -45,18 +42,24 @@ function Todo({
           todo={todo}
         />
       ) : (
-        <div
-          className={styles.todoOutlined}
-          onClick={() => toggleTodo(todo.id)}
-        >
+        <>
+          <MdDragIndicator className={styles.dragIcon} {...listeners} ref={setActivatorNodeRef}/>
           <div
-            className={`${styles.todo} ${
+            className={`${styles.todoOutlined} ${
               todo.isCompleted ? styles.completedTodo : ""
             }`}
+            onClick={() => toggleTodo(todo.id)}
           >
-            {todo.isCompleted && <MdDone className={styles.completedIcon} />}
-            <div className={styles.todoText}>{todo.text}</div>
-            <div className={styles.iconsContainer}>
+            <div className={styles.todo}>
+              {todo.isCompleted && (
+                <div className={styles.completedIconContainer}>
+                  <CompletedIcon />
+                  <div className={styles.completedCircle}></div>
+                </div>
+              )}
+
+              <div className={styles.todoText}>{todo.text}</div>
+
               {!todo.isCompleted && (
                 <MdOutlineModeEditOutline
                   className={styles.editIcon}
@@ -76,9 +79,9 @@ function Todo({
               />
             </div>
           </div>
-        </div>
+        </>
       )}
-    </Reorder.Item>
+    </div>
   )
 }
 

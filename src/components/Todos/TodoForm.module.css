@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 94px 30px 88px;
+  flex-flow: row nowrap;
 }
 
 .todoFormContainer input {
@@ -30,4 +30,22 @@
 
 .todoFormContainer input:focus::placeholder {
   color: transparent;
+}
+
+@media screen and (max-width: 375px) {
+  .todoFormContainer form {
+    flex-flow: column nowrap;
+    gap: 18px;
+  }
+
+  .todoFormContainer input {
+    font-size: 18px;
+    padding: 15px 12px;
+  }
+
+  .todoFormContainer Button {
+    width: 100%;
+    display: block;
+    margin-left: 0;
+  }
 }

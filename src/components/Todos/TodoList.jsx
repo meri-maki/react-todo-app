@@ -1,7 +1,25 @@
 import React from "react"
-import { Reorder } from "framer-motion"
-import Todo from "./Todo"
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core"
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  sortableKeyboardCoordinates,
+} from "@dnd-kit/sortable"
+import {
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+  restrictToFirstScrollableAncestor,
+} from "@dnd-kit/modifiers"
 import styles from "./TodoList.module.css"
+import Todo from "./Todo"
+
 
 function TodoList({
   todos,
@@ -12,35 +30,47 @@ function TodoList({
   editedTodo,
   editID,
   editTodo,
-  setTodos,
+  handleDragEnd,
 }) {
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
   return (
-    <Reorder.Group
-      as="ol"
-      axys="y"
-      values={todos}
-      onReorder={setTodos}
-      className={styles.todoListContainer}
-      onClick={(e) => e.stopPropagation()}
-
-    >
+    <div className={styles.todoListContainer}>
       {!todos.length && <h2>The list is empty</h2>}
-
-      {todos.map((todo) => (
-        <Todo
-          /* classname={todo.isCompleted ? 'completedTodo' : ''} */
-          todo={todo}
-          key={todo.id}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}
-          setEditedTodo={setEditedTodo}
-          setEditID={setEditID}
-          editedTodo={editedTodo}
-          editID={editID}
-        />
-      ))}
-    </Reorder.Group>
+      <DndContext
+        autoScroll={false}
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        modifiers={[
+          restrictToVerticalAxis,
+          restrictToWindowEdges,
+          restrictToVerticalAxis,
+          restrictToFirstScrollableAncestor,
+        ]}
+      >
+        <SortableContext items={todos} strategy={verticalListSortingStrategy}>
+          {todos.map((todo) => (
+            <Todo
+              todo={todo}
+              key={todo.id}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+              editTodo={editTodo}
+              setEditedTodo={setEditedTodo}
+              setEditID={setEditID}
+              editedTodo={editedTodo}
+              editID={editID}
+            />
+          ))}
+        </SortableContext>
+      </DndContext>
+    </div>
   )
 }
 

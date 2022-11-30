@@ -1,5 +1,8 @@
-import React from "react"
-import { MdOutlineChecklistRtl, MdOutlineClearAll, MdSync } from "react-icons/md"
+import {
+  MdOutlineChecklistRtl,
+  MdOutlineClearAll,
+  MdSync,
+} from "react-icons/md"
 import Button from "../UI/Button"
 
 import styles from "./TodosActions.module.css"

@@ -13,5 +13,16 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
-  margin-bottom: 36px;
+  margin-bottom: 34px;
+}
+
+@media screen and (max-width: 375px) {
+  .todosActionContainer Button {
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
+  }
+  .todosActionContainer {
+    gap: 30px;
+  }
 }

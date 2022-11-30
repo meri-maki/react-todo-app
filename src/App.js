@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { v4 as uuidv4 } from "uuid" // helps generate random id
 
+import { arrayMove } from "@dnd-kit/sortable"
+import { v4 as uuidv4 } from "uuid" // helps generate random id
 import "./App.css"
 import TodoForm from "./components/Todos/TodoForm"
 import TodoList from "./components/Todos/TodoList"
@@ -9,8 +10,10 @@ import TodosActions from "./components/Todos/TodosActions"
 function App() {
   const [todos, setTodos] = useState([])
   const [editID, setEditID] = useState(null)
+
   const [editedTodo, setEditedTodo] = useState("")
 
+  // ------- LOCAL STORAGE -------
   useEffect(() => {
     const temp = localStorage.getItem("todos")
     const loadedTodos = JSON.parse(temp)
@@ -25,20 +28,18 @@ function App() {
     localStorage.setItem("todos", temp)
   }, [todos])
 
+  // ------- TODO FUNCTIONS -------
   const addTodoHandler = (text) => {
     const newTodo = {
-      /* id: Math.floor(Math.random * 100),  better not to use Math.random*/
       id: uuidv4(),
       text,
       isCompleted: false,
     }
     if (!text || /^\s*$/.test(text)) {
-      //prevents only spaces to be count as input
       return
     }
     setTodos([...todos, newTodo])
   }
-
   const editTodo = (id) => {
     setTodos(
       todos.map((todo) => {
@@ -51,11 +52,9 @@ function App() {
     setEditID(null)
     setEditedTodo("")
   }
-
   const deleteTodoHandler = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id))
   }
-
   const toggleTodoHandler = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -66,6 +65,7 @@ function App() {
     )
   }
 
+  // ------- TODOS ACTIONS FUNCTIONS -------
   const resetTodosHandler = () => setTodos([])
   const clearCompltedTodosHandler = () => {
     setTodos(todos.filter((todo) => !todo.isCompleted))
@@ -79,11 +79,27 @@ function App() {
       )
     )
 
+  // ------- TODO LIST STATISTICS FUNCTION -------
   const completedTodosCount = todos.filter((todo) => todo.isCompleted).length
   const checkIfAllCompletedTodos = todos.filter(
     (todo) => !todo.isCompleted
   ).length
 
+  // ------- TODO DRAG AND DROP FUNCTIONS -------
+  const handleDragEnd = (event) => {
+    const { active, over } = event
+
+    if (active.id !== over.id) {
+      setTodos((todos) => {
+        const activeIndex = todos.findIndex((todo) => todo.id === active.id)
+        const overIndex = todos.findIndex((todo) => todo.id === over.id)
+
+        return arrayMove(todos, activeIndex, overIndex)
+      })
+    }
+  }
+
+  // ------- MAIN RETURN -------
   return (
     <div className="App">
       <h1>Todo App</h1>
@@ -98,9 +114,7 @@ function App() {
             markAsCompleted={markAsCompletedHandler}
           />
         )}
-
         <TodoList
-          setTodos={setTodos}
           toggleTodo={toggleTodoHandler}
           deleteTodo={deleteTodoHandler}
           editTodo={editTodo}
@@ -108,6 +122,7 @@ function App() {
           editID={editID}
           setEditedTodo={setEditedTodo}
           editedTodo={editedTodo}
+          handleDragEnd={handleDragEnd}
           todos={todos}
         />
         {completedTodosCount > 0 && completedTodosCount !== todos.length && (
