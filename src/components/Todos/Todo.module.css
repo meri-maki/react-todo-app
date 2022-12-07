@@ -10,10 +10,6 @@
   user-select: none; /* Standard syntax */
 }
 
-.todoContainer:first-of-type {
-  padding-top: 2px;
-}
-
 /*.todoContainer:nth-of-type(4n + 1) .completedTodo {
   background-color: var(--c-red);
   color: var(--c-white);

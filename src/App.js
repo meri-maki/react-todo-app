@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-
+import Confetti from "react-confetti"
+import { useWindowSize } from "react-use"
 import { arrayMove } from "@dnd-kit/sortable"
 import { v4 as uuidv4 } from "uuid" // helps generate random id
 import "./App.css"
@@ -8,6 +9,7 @@ import TodoList from "./components/Todos/TodoList"
 import TodosActions from "./components/Todos/TodosActions"
 
 function App() {
+  const { width, height } = useWindowSize()
   const [todos, setTodos] = useState([])
   const [editID, setEditID] = useState(null)
 
@@ -102,6 +104,15 @@ function App() {
   // ------- MAIN RETURN -------
   return (
     <div className="App">
+      {completedTodosCount !== 0 && completedTodosCount === todos.length && (
+        <Confetti
+          numberOfPieces={800}
+          width={width}
+          height={height}
+          run={true}
+          recycle={false}
+        />
+      )}
       <h1>Todo App</h1>
       <div className="app-container">
         <TodoForm addTodo={addTodoHandler} />
