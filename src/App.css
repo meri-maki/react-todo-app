@@ -114,6 +114,7 @@ h2.completed-count-text {
   border-radius: 4px !important;
   opacity: 1 !important;
   margin-top: 4px;
+  z-index: 100;
 }
 
 @media screen and (max-width: 375px) {
