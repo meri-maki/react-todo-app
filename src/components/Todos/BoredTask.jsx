@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 const BoredTask = () => {
-  const API_URL = "http://www.boredapi.com/api/activity"
+  const API_URL = "https://www.boredapi.com/api/activity"
   const [boredTodo, setBoredTodo] = useState([])
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(true)
