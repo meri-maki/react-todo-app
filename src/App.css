@@ -18,13 +18,19 @@
 
 h1 {
   font-size: 46px;
-  margin-bottom: 34px;
+  margin-bottom: 18px;
   font-weight: 600;
 }
 
 h2 {
   font-size: 24px;
   font-weight: 600;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 24px;
 }
 
 h2.completed-count-text {
@@ -35,13 +41,29 @@ h2.completed-count-text {
   color: var(--c-green);
 }
 
+.bored-todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bored-todo-container span {
+  animation: colorTextChange 20s infinite;
+}
+.bored-todo-animated {
+  animation: fadeInOut 7s ease-in-out infinite;
+  animation-fill-mode: forwards;
+}
+
+.bored-todo-loading {
+  animation: fadeInOut 4s ease-in-out;
+  animation-fill-mode: forwards;
+}
 .app-container {
   background-color: #ffffff;
   border: 1px solid #000000;
   position: relative;
   border-radius: 8px;
   padding: 52px 7%;
-  margin: 0 21px;
 }
 
 .app-container::after {
@@ -68,6 +90,18 @@ h2.completed-count-text {
   opacity: 0.4;
   filter: blur(144px);
   animation: colorBackChange 20s infinite;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes colorBackChange {
@@ -115,6 +149,12 @@ h2.completed-count-text {
   opacity: 1 !important;
   margin-top: 4px;
   z-index: 100;
+}
+
+@media screen and (max-width: 800px) {
+  .app-container {
+    margin: 0 21px;
+  }
 }
 
 @media screen and (max-width: 375px) {

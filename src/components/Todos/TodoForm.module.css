@@ -32,6 +32,12 @@
   color: transparent;
 }
 
+@media screen and (min-width: 1024px) {
+  .todoFormContainer {
+    margin-left: 38px;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .todoFormContainer form {
     flex-flow: column nowrap;

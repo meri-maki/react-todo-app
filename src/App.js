@@ -7,6 +7,7 @@ import "./App.css"
 import TodoForm from "./components/Todos/TodoForm"
 import TodoList from "./components/Todos/TodoList"
 import TodosActions from "./components/Todos/TodosActions"
+import BoredTask from "./components/Todos/BoredTask"
 
 function App() {
   const { width, height } = useWindowSize()
@@ -69,6 +70,7 @@ function App() {
 
   // ------- TODOS ACTIONS FUNCTIONS -------
   const resetTodosHandler = () => setTodos([])
+
   const clearCompltedTodosHandler = () => {
     setTodos(todos.filter((todo) => !todo.isCompleted))
   }
@@ -114,6 +116,7 @@ function App() {
         />
       )}
       <h1>Todo App</h1>
+      <BoredTask />
       <div className="app-container">
         <TodoForm addTodo={addTodoHandler} />
         {!!todos.length && (

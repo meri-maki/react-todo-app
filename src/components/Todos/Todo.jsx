@@ -1,4 +1,4 @@
-import React from "react"
+import React, {forwardRef} from 'react';
 import { MdDragIndicator, MdOutlineModeEditOutline } from "react-icons/md"
 import { RiDeleteBin6Line } from "react-icons/ri/"
 import { useSortable } from "@dnd-kit/sortable"
@@ -10,7 +10,8 @@ import TodoEditInput from "./TodoEditInput"
 import CompletedIcon from "../UI/СompletedIcon"
 import styles from "./Todo.module.css"
 
-function Todo({
+
+const Todo = forwardRef(({
   todo,
   toggleTodo,
   deleteTodo,
@@ -19,7 +20,7 @@ function Todo({
   editedTodo,
   editID,
   editTodo
-}) {
+}, ref) => {
 
   const {attributes, listeners, setNodeRef,setActivatorNodeRef, transform, transition } = useSortable({id: todo.id})
 
@@ -83,6 +84,6 @@ function Todo({
       )}
     </div>
   )
-}
+})
 
 export default Todo
